@@ -24,6 +24,18 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
     Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
+        return redirect()->route('tenantcy');
     });
+
+
+    Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+    Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+
+    require __DIR__.'/auth.php';
+
 });

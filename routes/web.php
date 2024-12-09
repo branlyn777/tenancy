@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\TenantcyController;
+use App\Http\Controllers\TenantController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -19,8 +19,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('profile', 'profile')->name('profile');
 
-    // Ruta protegida para TenantcyController
-    Route::get('tenantcy', TenantcyController::class)->name('tenantcy');
+    // Ruta protegida para TenantController
+
+    Route::get('/tenant', [TenantController::class, 'index'])->name('tenant.index');
+    Route::post('/tenant', [TenantController::class, 'store'])->name('tenant.store');
+
 });
 
 

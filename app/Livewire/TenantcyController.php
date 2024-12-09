@@ -8,10 +8,10 @@ class TenantcyController extends Component
 {
     public function render()
     {
-        $data = "";
+        $tenants = "";
 
         return view('livewire.tenantcy', [
-            'data' => $data,
+            'tenants' => $tenants,
         ])
         ->extends('layouts.theme.app')
         ->section('content');
